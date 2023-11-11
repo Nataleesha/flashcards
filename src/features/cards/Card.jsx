@@ -1,10 +1,17 @@
+/* eslint-disable no-unused-vars */
 import { useState } from "react";
 import { useSelector } from "react-redux";
-// import selector
+import { selectCards } from "./cardsSlice";
 
+// eslint-disable-next-line react/prop-types
 const Card = ({ id }) => {
-  const card = {}; // replace this with a call to your selector to get a card by id
+  const cards = useSelector(selectCards);
+  const card = cards[id];
   const [flipped, setFlipped] = useState(false);
+
+  if (!cards) {
+    return null;
+  }
 
   return (
     <li>
